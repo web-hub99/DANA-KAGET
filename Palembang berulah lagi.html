@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kunci</title>
+  <title>lanjut</title>
   <style>
     html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
     .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);}
@@ -15,38 +15,41 @@
   </style>
 </head>
 <body>
-  <div class="overlay" role="dialog" aria-modal="true" aria-label="Anda telah dikunci">
+  <div class="overlay" role="dialog" aria-modal="true" aria-label="Klik tombol di bawah ini untuk lanjut">
     <div class="modal">
-      <div class="title">anda telah dikunci</div>
-      <button id="btnKeluar" class="btn">keluar</button>
+      <div class="title">klik tombol di bawah ini untuk lanjut</div>
+      <button id="btnKeluar" class="btn">klik di sini</button>
     </div>
   </div>
 
-  <!-- ganti LINK_LAGU_LU.mp3 dengan link mp3 kamu -->
-  <audio id="bgm" loop playsinline>
-    <source src="kobo-jawa.mp3" type="audio/mpeg">
+  <!-- autoplay lagu langsung dari Google Drive -->
+  <audio id="bgm" autoplay loop playsinline>
+    <source src="AUD-20250703-WA0148.mp3" type="audio/mpeg">
   </audio>
 
   <script>
     const btn = document.getElementById('btnKeluar');
     const audio = document.getElementById('bgm');
 
+    // tombol malah replay lagu
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      // efek shake
       btn.animate([
         { transform: 'translateX(0)' },
         { transform: 'translateX(-8px)' },
         { transform: 'translateX(8px)' },
         { transform: 'translateX(0)' }
       ], { duration: 300 });
-
-      // mainkan atau replay lagu
       audio.currentTime = 0;
       audio.play().catch(()=>{});
       return false;
     }, { passive: false });
+
+    // coba langsung play saat masuk
+    document.addEventListener('DOMContentLoaded', () => {
+      audio.play().catch(()=>{});
+    });
   </script>
 </body>
 </html>
